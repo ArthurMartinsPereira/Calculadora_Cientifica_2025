@@ -63,6 +63,26 @@ def fatorial():
         print("Fatorial não existe para negativos.")
 
 
+def porcentagem():
+    valor = float(input("Valor: "))
+    porcento = float(input("Porcentagem: "))
+    print("Resultado: ", (valor / porcento) * 100)
+
+
+def logaritmo():
+    num = float(input("Número: "))
+    if num > 0:
+        print("Resultado: ", math.log10(num))
+    else:
+        print("Logaritmos só existem para números positivos!")
+
+
+def tangente():
+    angulo = float(input("Ângulo em graus: "))
+    radianos = math.radians(angulo)
+    print("Resultado: ", math.tan(radianos))
+
+
 def calculadora():
     while True:
         print("\n==== Calculadora Científica ====")
