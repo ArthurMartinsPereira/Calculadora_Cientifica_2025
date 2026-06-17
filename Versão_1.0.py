@@ -1,30 +1,45 @@
-# Calculadora Científica Simplificada:
+# Calculadora Científica Simplificada V1.0:
 import math
-
 
 def soma():
     a = float(input("Primeiro Número: "))
     b = float(input("Segundo Número: "))
-    print(f"O resultado é: {a + b}")
+    resultado = a + b
+
+    historico.append(f"{a} + {b} = {resultado}")
+
+    print(f"O resultado é: {resultado}")
 
 
 def subtracao():
     a = float(input("Primeiro Número: "))
     b = float(input("Segundo Número: "))
-    print(f"O resultado é: {a - b}")
+    resultado = a - b
+
+    historico.append(f"{a} - {b} = {resultado}")
+
+    print(f"O resultado é: {resultado}")
 
 
 def multiplicacao():
     a = float(input("Primeiro Número: "))
     b = float(input("Segundo Número: "))
-    print(f"O resultado é: {a * b}")
+    resultado = a * b
+
+    historico.append(f"{a} * {b} = {resultado}")
+
+    print(f"O resultado é: {resultado}")
 
 
 def divisao():
     a = float(input("Primeiro Número: "))
     b = float(input("Segundo Número: "))
     if b != 0:
-        print(f"O resultado é: {a / b}")
+        resultado = a / b
+
+        historico.append(f"{a} / {b} = {resultado}")
+
+        print(f"O resultado é: {resultado}")
     else:
         print("Não é possivel dividir por zero!")
 
@@ -66,7 +81,7 @@ def fatorial():
 def porcentagem():
     valor = float(input("Valor: "))
     porcento = float(input("Porcentagem: "))
-    print("Resultado: ", (valor / porcento) * 100)
+    print("Resultado: ", (valor * porcento) / 100)
 
 
 def logaritmo():
@@ -83,19 +98,42 @@ def tangente():
     print("Resultado: ", math.tan(radianos))
 
 
+def mostrar_histórico():
+    if not historico:
+        print("Histórico Vazio.")
+        return
+    print("\n=== Histórico ===")
+    for operacao in historico:
+        print(operacao)
+
+
+menu = {
+    "1": ("soma", soma),
+    "2": ("subtracao", subtracao),
+    "3": ("multiplicacao", multiplicacao),
+    "4": ("divisao", divisao),
+    "5": ("potencia", potencia),
+    "6": ("raiz_quadrada", raiz_quadrada),
+    "7": ("seno", seno),
+    "8": ("cosseno", cosseno),
+    "9": ("fatorial", fatorial),
+    "10": ("porcentagem", porcentagem),
+    "11": ("logaritmo", logaritmo),
+    "12": ("tangente", tangente),
+    "13": ("historico", mostrar_histórico)
+}
+
+historico = []
+
+
 def calculadora():
     while True:
         print("\n==== Calculadora Científica ====")
-        print("1- Soma")
-        print("2- Subtração")
-        print("3- Multiplicação")
-        print("4- Divisão")
-        print("5- Potência")
-        print("6- Raiz Quadrada")
-        print("7- Seno")
-        print("8- Cosseno")
-        print("9- Fatorial")
-        print("0- Sair")
+
+        for chave, (nome, _) in menu.items():
+            print(f"{chave} - {nome}")
+
+        print("0 - Sair")
 
         try:
             opcao = input("Escolha uma opção: ")
@@ -104,38 +142,13 @@ def calculadora():
                 print("Saindo...")
                 break
 
-            elif opcao == "1":
-                soma()
-
-            elif opcao == "2":
-                subtracao()
-
-            elif opcao == "3":
-                multiplicacao()
-
-            elif opcao == "4":
-                divisao()
-
-            elif opcao == "5":
-                potencia()
-
-            elif opcao == "6":
-                raiz_quadrada()
-
-            elif opcao == "7":
-                seno()
-
-            elif opcao == "8":
-                cosseno()
-
-            elif opcao == "9":
-                fatorial()
+            elif opcao in menu:
+                menu[opcao][1]()
 
             else:
-                print("Opção Inválida!")
+                print("Opção inválida!")
 
         except ValueError:
-            print("Entrada Inválida!")
-
+            print("Entrada inválida!")
 
 calculadora()
