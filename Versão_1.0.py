@@ -1,9 +1,14 @@
 # Calculadora Científica Simplificada V1.0:
 import math
 
-def soma():
+def pedir_dois_numeros():
     a = float(input("Primeiro Número: "))
     b = float(input("Segundo Número: "))
+    return a, b
+
+
+def soma():
+    a, b = pedir_dois_numeros()
     resultado = a + b
 
     historico.append(f"{a} + {b} = {resultado}")
@@ -12,8 +17,7 @@ def soma():
 
 
 def subtracao():
-    a = float(input("Primeiro Número: "))
-    b = float(input("Segundo Número: "))
+    a, b = pedir_dois_numeros()
     resultado = a - b
 
     historico.append(f"{a} - {b} = {resultado}")
@@ -22,8 +26,7 @@ def subtracao():
 
 
 def multiplicacao():
-    a = float(input("Primeiro Número: "))
-    b = float(input("Segundo Número: "))
+    a, b = pedir_dois_numeros()
     resultado = a * b
 
     historico.append(f"{a} * {b} = {resultado}")
@@ -32,8 +35,7 @@ def multiplicacao():
 
 
 def divisao():
-    a = float(input("Primeiro Número: "))
-    b = float(input("Segundo Número: "))
+    a, b = pedir_dois_numeros()
     if b != 0:
         resultado = a / b
 
@@ -47,13 +49,20 @@ def divisao():
 def potencia():
     base = float(input("Base: "))
     expoente = float(input("Expoente: "))
-    print("O resultado é:", math.pow(base, expoente))
+    resultado = math.pow(base, expoente)
+
+    historico.append(f"{base}^{expoente} = {resultado}")
+
+    print(f"O resultado é: {resultado}")
 
 
 def raiz_quadrada():
     num = float(input("Número: "))
     if num >= 0:
-        print("Raiz Quadrada: ", math.sqrt(num))
+        resultado = math.sqrt(num)
+        historico.append(f"√{num} = {resultado}")
+
+        print(f"Raiz Quadrada: {resultado}")
     else:
         print("Não existe raiz quadrada real de número negativo.")
 
@@ -61,19 +70,29 @@ def raiz_quadrada():
 def seno():
     angulo = float(input("Ângulo em graus: "))
     radianos = math.radians(angulo)
-    print("Resultado: ", math.sin(radianos))
+    resultado = math.sin(radianos)
+    historico.append(f"sen({angulo}) = {resultado}")
+
+    print(f"Resultado: {resultado}")
 
 
 def cosseno():
     angulo = float(input("Ângulo em graus:"))
     radiano = math.radians(angulo)
-    print("Resultado: ", math.cos(radiano))
+    resultado = math.cos(radiano)
+
+    historico.append(f"cos({angulo}) = {resultado}")
+
+    print(f"Resultado: {resultado}")
 
 
 def fatorial():
     num = int(input("Número inteiro: "))
     if num >= 0:
-        print("Resultado:", math.factorial(num))
+        resultado =  math.factorial(num)
+        historico.append(f"{num}! = {resultado}")
+
+        print(f"Resultado: {resultado}")
     else:
         print("Fatorial não existe para negativos.")
 
@@ -81,13 +100,20 @@ def fatorial():
 def porcentagem():
     valor = float(input("Valor: "))
     porcento = float(input("Porcentagem: "))
-    print("Resultado: ", (valor * porcento) / 100)
+    resultado = (valor * porcento) / 100
+
+    historico.append( f"{porcento}% de {valor} = {resultado}")
+
+    print(f"Resultado: {resultado}")
 
 
 def logaritmo():
     num = float(input("Número: "))
     if num > 0:
-        print("Resultado: ", math.log10(num))
+        resultado = math.log10(num)
+        historico.append(f"log({num}) = {resultado}")
+
+        print(f"Resultado: {resultado}")
     else:
         print("Logaritmos só existem para números positivos!")
 
@@ -95,10 +121,13 @@ def logaritmo():
 def tangente():
     angulo = float(input("Ângulo em graus: "))
     radianos = math.radians(angulo)
-    print("Resultado: ", math.tan(radianos))
+    resultado = math.tan(radianos)
+    historico.append(f"tan({angulo}) = {resultado}")
+
+    print(f"Resultado: {resultado}")
 
 
-def mostrar_histórico():
+def mostrar_historico():
     if not historico:
         print("Histórico Vazio.")
         return
@@ -106,21 +135,26 @@ def mostrar_histórico():
     for operacao in historico:
         print(operacao)
 
+def limpar_historico():
+    historico.clear()
+    print("Histórico Apagado.")
+
 
 menu = {
-    "1": ("soma", soma),
-    "2": ("subtracao", subtracao),
-    "3": ("multiplicacao", multiplicacao),
-    "4": ("divisao", divisao),
-    "5": ("potencia", potencia),
-    "6": ("raiz_quadrada", raiz_quadrada),
-    "7": ("seno", seno),
-    "8": ("cosseno", cosseno),
-    "9": ("fatorial", fatorial),
-    "10": ("porcentagem", porcentagem),
-    "11": ("logaritmo", logaritmo),
-    "12": ("tangente", tangente),
-    "13": ("historico", mostrar_histórico)
+    "1": ("Soma", soma),
+    "2": ("Subtração", subtracao),
+    "3": ("Multiplicação", multiplicacao),
+    "4": ("Divisão", divisao),
+    "5": ("Potencia", potencia),
+    "6": ("Raiz Quadrada", raiz_quadrada),
+    "7": ("Seno", seno),
+    "8": ("Cosseno", cosseno),
+    "9": ("Fatorial", fatorial),
+    "10": ("Percentage", porcentagem),
+    "11": ("Logaritmo", logaritmo),
+    "12": ("Tangente", tangente),
+    "13": ("Histórico", mostrar_historico),
+    "14": ("Limpar Histórico", limpar_historico)
 }
 
 historico = []
